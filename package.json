@@ -1,0 +1,28 @@
+{
+  "name": "gulp-startkit",
+  "version": "1.0.0",
+  "description": "with sass and babel",
+  "repository": "https://github.com/handred800/gulp-startkit.git",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "autoprefixer": "^9.8.0",
+    "babel": "^6.23.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.26.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp-startkit"
+  ],
+  "author": "handred800",
+  "license": "ISC"
+}
