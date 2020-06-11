@@ -1,5 +1,7 @@
-$color: pink;
+@import "./_normalize.scss";
+@import "./_variable/_variable.scss";
+@import "./_mixin/_media_query.scss";
 
-html,body{
-    background-color: $color;
-}
+@import "./_layout/_layout.scss";
+@import "./_layout/_grid.scss";
+

@@ -1,0 +1,11 @@
+@mixin media-min-sm {
+    @media screen and (min-width: $break-point-sm) {
+        @content
+    }
+};
+
+@mixin media-min-md {
+    @media screen and (min-width: $break-point-md) {
+        @content
+    }
+}

@@ -7,7 +7,7 @@ const gulp = require('gulp'),
 
 gulp.task('html', () => {
     return gulp.src('src/*.html')
-        .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('img', () => {
@@ -16,7 +16,7 @@ gulp.task('img', () => {
 })
 
 gulp.task('sass', () => {
-    return gulp.src('src/sass/main.scss')
+    return gulp.src('src/sass/**/*.scss')
         .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(postcss([autoprefixer()]))
         .pipe(gulp.dest('dist/common/css'));
@@ -29,5 +29,11 @@ gulp.task("babel", () => {
     .pipe(gulp.dest("dist/common/js/"));
 });
 
+gulp.task("watch", () => {
+    gulp.watch("src/*.html",gulp.series('html'));
+    gulp.watch("src/sass/**/*.scss",gulp.series('sass'));
+    gulp.watch("src/js/**/*.js",gulp.series('babel'));
+})
 
-gulp.task('default', gulp.parallel('html','img' ,'sass', 'babel'));
+
+gulp.task('default', gulp.parallel('html','img' ,'sass', 'babel', 'watch'));

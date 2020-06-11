@@ -1,0 +1,21 @@
+.container{
+    display: block;
+    margin: auto;
+    @include media-min-md {
+        max-width: 1024px;
+    }
+}
+.d-none-md{
+    @include media-min-md{
+        display: none;
+    }
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    .col{
+        flex: 1 1 auto;
+    }
+}
+
