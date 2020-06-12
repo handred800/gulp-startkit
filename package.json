@@ -4,7 +4,10 @@
   "description": "with sass and babel",
   "repository": "https://github.com/handred800/gulp-startkit.git",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "jquery": "^3.5.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
@@ -15,6 +18,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
+    "merge-stream": "^2.0.0",
     "sass": "^1.26.8"
   },
   "scripts": {
