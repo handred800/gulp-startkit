@@ -14,19 +14,21 @@
 *1.npm 安裝套件之後在 gulpfile.js補上*
 
 ```js
-// vendors 中加上安裝的套件名稱
-const vendors = ['jquery/dist','@fortawesome/fontawesome-free'];
+// vendors 中加上安裝的套件名稱 + 子目錄(有指定的話)
+// 更新：可以輸出指定的子目錄 (TODO: 可輸出指定的檔案)
+// 以下為引入jquery + fontawesome 的子目錄 css, webfont
+const vendors = [{
+  name: 'jquery/dist',
+  children: [],
+}, {
+  name: '@fortawesome/fontawesome-free',
+  children: ['/css', '/webfonts']
+}];
 
-// 此段遍歷 vendors 複製對應的 assets 輸出到 vendors
-// TODO: 可以取用特定的 assets (e.g.: 只取用 jquery.min.js) 減少輸出容量
-gulp.task('vendors', () => {
-    return mergeStream(vendors.map(function (vendor) {
-        return gulp.src('node_modules/' + vendor.path + '/**/*')
-            .pipe(gulp.dest('dist/common/vendors/' + vendor.path.replace(/\/.*/, '')));
-    }));
-});
+// task:vendors 用來遍歷 vendors 複製對應的 assets 輸出到 vendors
 ```
 *2.補上所有 html 的引入位置 (TODO: 可以統一在gulp設定)*
+更新：src/template/_script.html 用來放script標籤
 
 
 
