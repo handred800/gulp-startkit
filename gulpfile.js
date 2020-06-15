@@ -4,19 +4,28 @@ const gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     gulpUglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
-    mergeStream = require('merge-stream');
+    mergeStream = require('merge-stream'),
+    fileinclude = require('gulp-file-include');
 
 const vendors = ['jquery/dist','@fortawesome/fontawesome-free'];
+const vendor_test = [{
+    name: 'jquery/dist',
+    children: [],
+},{
+    name: '@fortawesome/fontawesome-free',
+    children: ['/css','/webfonts']
+}];
 
 gulp.task('vendors', () => {
     return mergeStream(vendors.map(function (vendor) {
-        return gulp.src('node_modules/' + vendor.path + '/**/*')
-            .pipe(gulp.dest('dist/common/vendors/' + vendor.path.replace(/\/.*/, '')));
+        return gulp.src('node_modules/' + vendor + '/**/*')
+            .pipe(gulp.dest('dist/common/vendors/' + vendor.replace(/\/.*/, '')));
     }));
 });
 
 gulp.task('html', () => {
     return gulp.src('src/*.html')
+        .pipe(fileinclude())
         .pipe(gulp.dest('dist'));
 });
 

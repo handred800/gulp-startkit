@@ -11,7 +11,7 @@
 |         └─jquery(套件folder)
 ```
 ## 半自動載入套件(優化中)
-* 1.npm 安裝套件之後在 gulpfile.js補上
+*1.npm 安裝套件之後在 gulpfile.js補上*
 
 ```js
 // vendors 中加上安裝的套件名稱
@@ -26,7 +26,7 @@ gulp.task('vendors', () => {
     }));
 });
 ```
-* 2.補上所有 html 的引入位置 (TODO: 可以統一在gulp設定)
+*2.補上所有 html 的引入位置 (TODO: 可以統一在gulp設定)*
 
 
 
