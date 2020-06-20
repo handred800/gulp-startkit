@@ -4,24 +4,29 @@ const gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   gulpUglify = require('gulp-uglify'),
   sass = require('gulp-sass'),
+  sourcemaps = require('gulp-sourcemaps'),
   mergeStream = require('merge-stream'),
   fileinclude = require('gulp-file-include');
 
-const vendors = [{
-  name: 'jquery/dist',
-  children: [],
-}, {
-  name: '@fortawesome/fontawesome-free',
-  children: ['/css', '/webfonts']
-}];
+const vendors = [
+  {
+    name: 'jquery/dist',
+    children: [],
+  }, {
+    name: '@fortawesome/fontawesome-free',
+    children: ['/css', '/webfonts'],
+  }
+];
 
 gulp.task('vendors', () => {
   let stream = mergeStream();
   let taskArray = vendors.map((vendor) => {
     if (vendor.children.length === 0) {
+      // 無 children，去掉 "/" 後的路徑名稱 (e.g. jquery/dist => jquery)
       return gulp.src('node_modules/' + vendor.name + '/**/*')
         .pipe(gulp.dest('dist/common/vendors/' + vendor.name.replace(/\/.*/, '')));
     } else {
+      // 有 children，用 child 取代 "/" 後的路徑名稱 (e.g. @fortawesome/fontawesome-free => @fortawesome/css )
       return vendor.children.map((child) => {
         return gulp.src('node_modules/' + vendor.name + child + '/*')
           .pipe(gulp.dest('dist/common/vendors/' + vendor.name.replace(/\/.*/, child)));
@@ -48,8 +53,10 @@ gulp.task('img', () => {
 
 gulp.task('sass', () => {
   return gulp.src('src/sass/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('dist/common/css'));
 });
 

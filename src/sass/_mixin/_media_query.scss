@@ -1,3 +1,4 @@
+// min (當裝置大於breakpoint)
 @mixin media-min-sm {
     @media screen and (min-width: $break-point-sm) {
         @content
@@ -8,4 +9,18 @@
     @media screen and (min-width: $break-point-md) {
         @content
     }
-}
+};
+
+// max (當裝置小於breakpoint)
+@mixin media-max-sm {
+    @media screen and (max-width: $break-point-sm) {
+        @content
+    }
+};
+
+// maxmin (當裝置介於兩個breakpoint之間)
+@mixin media-maxmin-sm {
+    @media screen and (min-width: $break-point-sm) and (max-width: $break-point-md) {
+        @content
+    }
+};

@@ -2,20 +2,52 @@
     display: block;
     margin: auto;
     @include media-min-md {
-        max-width: 1024px;
+        max-width: 1140px;
     }
 }
-.d-none-md{
-    @include media-min-md{
+
+.d-none-mobile{
+    @include media-max-sm{
+        display: none;
+    }    
+}
+.d-none-pc{
+    @include media-min-sm{
         display: none;
     }
+}
+
+.d-none{
+    display: none;
 }
 
 .row{
     display: flex;
     flex-wrap: wrap;
-    .col{
-        flex: 1 1 auto;
+    [class^=col]{
+        padding: 0 10px;
+        box-sizing: border-box;
+        width: 100%;
     }
+
+    @include media-min-md{
+        .col-auto{
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+        .col-1-3{
+            flex: 0 0 33.33%;
+            max-width: 33.33%;
+        }
+    }
+    @include media-maxmin-sm{
+        .col-1-3{
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+    }    
 }
 
+img{
+    max-width: 100%;
+}
